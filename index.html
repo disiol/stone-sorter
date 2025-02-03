@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Sorter: Optimize Stone Row</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">Stone Sorter</h1>
+
+    <div class="input-section">
+        <h2 class="input-section__title">Enter Stone Row (R, G, B):</h2>
+        <input type="text" id="inputStones" class="input-section__field" placeholder="Example: RRGGBB">
+    </div>
+
+    <div class="algorithm-selection">
+        <h3 class="algorithm-selection__title">Select Algorithm:</h3>
+        <label class="algorithm-selection__option">
+            <input type="radio" name="algorithm" value="remove" checked> Remove Adjacent Identical Stones
+        </label>
+        <label class="algorithm-selection__option">
+            <input type="radio" name="algorithm" value="rows"> Count Rows with All Colors
+        </label>
+    </div>
+
+    <button id="processButton" class="btn">Process</button>
+
+    <h3>Visualization:</h3>
+    <div class="visualization" id="stoneVisualization">
+
+    </div>
+    <h3>Results:</h3>
+    <p id="result"></p>
+</div>
+
+<script type="module" src="scripts/main.js"></script>
+
+</body>
+</html>
