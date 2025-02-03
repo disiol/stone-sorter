@@ -3,9 +3,7 @@ export class StoneProcessor {
     let count = 0;
 
     for (let i = 1; i < stones.length; i++) {
-      if (stones[i] === stones[i - 1]) {
-        count++;
-      }
+      if (stones[i] === stones[i - 1]) count++;
     }
 
     return count;
@@ -13,14 +11,15 @@ export class StoneProcessor {
 
   static countColorRows(stones) {
     let fullRows = 0;
-    let currentRowColors = new Set();
+    let currentRow = [];
 
     for (let i = 0; i < stones.length; i++) {
-      currentRowColors.add(stones[i]);
-
-      if (currentRowColors.size === 3) {
+      if (!currentRow.includes(stones[i])) {
+        currentRow.push(stones[i]);
+      }
+      if (currentRow.length === 3) {
         fullRows++;
-        currentRowColors.clear();
+        currentRow = [];
       }
     }
 

@@ -15,6 +15,18 @@
         <h2 class="input-section__title">Enter Stone Row (R, G, B):</h2>
         <input type="text" id="inputStones" class="input-section__field" placeholder="Example: RRGGBB">
     </div>
+    <div class="example-selection">
+        <h3 class="example-selection__title">Choose Example:</h3>
+        <select id="examples" class="example-selection__dropdown">
+            <option value="">-- Select an example --</option>
+            <option value="RRGB">RRGB</option>
+            <option value="RRGGB">RRGGB</option>
+            <option value="RRRRGB">RRRRGB</option>
+            <option value="RGBRGBRGGB">RGBRGBRGGB</option>
+            <option value="RGGRGBBRGRR">RGGRGBBRGRR</option>
+            <option value="RRRRGGGGBBBB">RRRRGGGGBBBB</option>
+        </select>
+    </div>
 
     <div class="algorithm-selection">
         <h3 class="algorithm-selection__title">Select Algorithm:</h3>
@@ -25,6 +37,8 @@
             <input type="radio" name="algorithm" value="rows"> Count Rows with All Colors
         </label>
     </div>
+
+
 
     <button id="processButton" class="btn">Process</button>
 

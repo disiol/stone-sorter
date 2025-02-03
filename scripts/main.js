@@ -1,6 +1,9 @@
-import {UIHandler} from './app/UIHandler.js';
+import { UIHandler } from './app/UIHandler.js';
 
-// Wait until the DOM is fully loaded before adding event listeners
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('processButton').addEventListener('click', UIHandler.handleProcessClick);
+  const processButton = document.getElementById('processButton');
+
+  if (processButton) {
+    processButton.addEventListener('click', UIHandler.handleProcessClick);
+  }
 });
