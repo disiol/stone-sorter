@@ -4,7 +4,8 @@ Here’s the updated documentation with the correct test cases and expected resu
 
 ## **📌 Stone Sorter: Optimize Stone Row**
 A JavaScript web application that processes a row of stones (`R`, `G`, `B`) using two different algorithms:
-1. **Remove adjacent identical stones** – Calculates the minimum number of stones that need to be removed so that no two adjacent stones are the same.
+1. **Remove adjacent identical stones** – Calculates the minimum number of stones that need to be removed so that no two 
+2. adjacent stones are the same.
 2. **Count rows containing all colors** – Determines how many full groups of stones contain all three colors (`R`, `G`, `B`).
 
 ---
@@ -125,9 +126,3 @@ This project is licensed under the **MIT License**.
 
 ---
 
-### **✨ What’s New?**
-✅ **Test cases are now properly documented!**  
-✅ **Examples now clearly show expected output.**  
-✅ **Proper formatting for improved readability.**
-
-Let me know if you need further refinements! 🚀
