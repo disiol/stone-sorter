@@ -23,9 +23,11 @@ export class StoneProcessor {
     let fullRows = 0;
     let currentRowColors = new Set();
 
+    const ROW_SIZE = 3;
+
     for (let stone of stones) {
       currentRowColors.add(stone);
-      if (currentRowColors.size === 3) {
+      if (currentRowColors.size === ROW_SIZE) {
         fullRows++;
         currentRowColors.clear();
       }
