@@ -1,7 +1,7 @@
-
 export class Renderer {
   static ANIMATION_DELAY = 500; // Час перед початком анімації
   static ANIMATION_DURATION = 900; // Загальна тривалість ефекту
+
   static clearContainer() {
     document.getElementById('stoneVisualization').innerHTML = '';
   }
@@ -15,28 +15,23 @@ export class Renderer {
     rowContainer.classList.add('row');
     let currentRowColors = new Set();
 
+    const SIZE_ROW = 3;
+
     for (let i = 0; i < stones.length; i++) {
       const stoneElement = document.createElement('div');
 
       stoneElement.classList.add('stone', `stone--${stones[i]}`);
       stoneElement.innerText = stones[i];
 
-      // Анімація видалення каменів із використанням константи
       animRemovedStones(removedIndices, i, stoneElement);
 
       rowContainer.appendChild(stoneElement);
+      rowContainer = this.rowMode(isRowMode, currentRowColors, stones, i, SIZE_ROW, stoneContainer, rowContainer);
 
       if (isRowMode) {
-        currentRowColors.add(stones[i]);
-        if (currentRowColors.size === 3) {
-          stoneContainer.appendChild(rowContainer);
-          rowContainer = document.createElement('div');
-
-          setTimeout(() => {
-            rowContainer.classList.add('row');
-          }, Renderer.ANIMATION_DELAY);
-          currentRowColors.clear();
-        }
+        setTimeout(() => {
+          stoneElement.classList.add('fade-in');
+        }, Renderer.ANIMATION_DELAY + (i % SIZE_ROW) * 200); // Поступова поява елементів
       }
     }
 
@@ -51,6 +46,20 @@ export class Renderer {
         }, Renderer.ANIMATION_DELAY);
       }
     }
+  }
+
+  static rowMode(isRowMode, currentRowColors, stones, i, SIZE_ROW, stoneContainer, rowContainer) {
+    if (isRowMode) {
+      currentRowColors.add(stones[i]);
+      if (currentRowColors.size === SIZE_ROW) {
+        stoneContainer.appendChild(rowContainer);
+        rowContainer = document.createElement('div');
+        rowContainer.classList.add('row');
+        currentRowColors.clear();
+      }
+    }
+
+    return rowContainer;
   }
 
   static showResult(message) {
