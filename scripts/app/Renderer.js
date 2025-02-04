@@ -1,10 +1,3 @@
-function animRemovedStones(removedIndices, i, stoneElement) {
-  if (removedIndices.includes(i)) {
-    setTimeout(() => {
-      stoneElement.classList.add('stone--animRemovedStones');
-    }, Renderer.ANIMATION_DELAY);
-  }
-}
 
 export class Renderer {
   static ANIMATION_DELAY = 500; // Час перед початком анімації
@@ -38,7 +31,10 @@ export class Renderer {
         if (currentRowColors.size === 3) {
           stoneContainer.appendChild(rowContainer);
           rowContainer = document.createElement('div');
-          rowContainer.classList.add('row');
+
+          setTimeout(() => {
+            rowContainer.classList.add('row');
+          }, Renderer.ANIMATION_DELAY);
           currentRowColors.clear();
         }
       }
@@ -46,6 +42,14 @@ export class Renderer {
 
     if (rowContainer.childNodes.length > 0) {
       stoneContainer.appendChild(rowContainer);
+    }
+
+    function animRemovedStones(removedIndices, i, stoneElement) {
+      if (removedIndices.includes(i)) {
+        setTimeout(() => {
+          stoneElement.classList.add('stone--animRemovedStones');
+        }, Renderer.ANIMATION_DELAY);
+      }
     }
   }
 
