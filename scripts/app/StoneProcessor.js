@@ -1,8 +1,8 @@
 export class StoneProcessor {
   /**
-   * Removes adjacent identical stones.
+   * Підраховує мінімальну кількість видалених каменів, щоб уникнути однакових поруч.
    * @param {string} stones
-   * @returns {number} count of removed stones
+   * @returns {number}
    */
   static minStonesToRemove(stones) {
     let count = 0;
@@ -15,21 +15,21 @@ export class StoneProcessor {
   }
 
   /**
-   * Counts rows where all three colors appear.
+   * Підраховує кількість повних рядків (R, G, B)
    * @param {string} stones
-   * @returns {number} count of full rows
+   * @returns {number}
    */
   static countColorRows(stones) {
     let fullRows = 0;
-    let currentRowColors = new Set();
+    let currentRow = [];
 
-    const ROW_SIZE = 3;
-
-    for (let stone of stones) {
-      currentRowColors.add(stone);
-      if (currentRowColors.size === ROW_SIZE) {
+    for (let i = 0; i < stones.length; i++) {
+      if (!currentRow.includes(stones[i])) {
+        currentRow.push(stones[i]);
+      }
+      if (currentRow.length === 3) {
         fullRows++;
-        currentRowColors.clear();
+        currentRow = [];
       }
     }
 
@@ -37,9 +37,29 @@ export class StoneProcessor {
   }
 
   /**
-   * Removes extra occurrences of colors to ensure proper RGB sequences.
+   * Визначає камені, які треба видалити, і повертає їх індекси.
    * @param {string} stones
-   * @returns {string} cleaned stone sequence
+   * @returns {Object} { cleanedStones, removedIndices }
+   */
+  static getRemovals(stones) {
+    let cleanedStones = '';
+    let removedIndices = [];
+
+    for (let i = 0; i < stones.length; i++) {
+      if (i > 0 && stones[i] === stones[i - 1]) {
+        removedIndices.push(i);
+      } else {
+        cleanedStones += stones[i];
+      }
+    }
+
+    return { cleanedStones, removedIndices };
+  }
+
+  /**
+   * Видаляє зайві повтори кольорів, залишаючи правильну послідовність RGB.
+   * @param {string} stones
+   * @returns {string}
    */
   static removeExtraColors(stones) {
     let cleanedStones = '';

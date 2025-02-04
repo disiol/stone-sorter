@@ -1,9 +1,11 @@
 export class Renderer {
+  static ANIMATION_DELAY = 200; // Час перед початком анімації
+  static ANIMATION_DURATION = 500; // Загальна тривалість ефекту
   static clearContainer() {
     document.getElementById('stoneVisualization').innerHTML = '';
   }
 
-  static renderStones(stones, isRowMode) {
+  static renderStones(stones, isRowMode, removedIndices = []) {
     this.clearContainer();
     const stoneContainer = document.getElementById('stoneVisualization');
 
@@ -12,15 +14,23 @@ export class Renderer {
     rowContainer.classList.add('row');
     let currentRowColors = new Set();
 
-    for (let stone of stones) {
+    for (let i = 0; i < stones.length; i++) {
       const stoneElement = document.createElement('div');
 
-      stoneElement.classList.add('stone', `stone--${stone}`);
-      stoneElement.innerText = stone;
+      stoneElement.classList.add('stone', `stone--${stones[i]}`);
+      stoneElement.innerText = stones[i];
+
+      // Анімація видалення каменів із використанням константи
+      if (removedIndices.includes(i)) {
+        setTimeout(() => {
+          stoneElement.classList.add('removed');
+        }, Renderer.ANIMATION_DELAY);
+      }
+
       rowContainer.appendChild(stoneElement);
 
       if (isRowMode) {
-        currentRowColors.add(stone);
+        currentRowColors.add(stones[i]);
         if (currentRowColors.size === 3) {
           stoneContainer.appendChild(rowContainer);
           rowContainer = document.createElement('div');

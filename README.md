@@ -1,12 +1,6 @@
-Here’s the updated documentation with the correct test cases and expected results:
-
----
-
-## **📌 Stone Sorter: Optimize Stone Row**
-A JavaScript web application that processes a row of stones (`R`, `G`, `B`) using two different algorithms:
-1. **Remove adjacent identical stones** – Calculates the minimum number of stones that need to be removed so that no two 
-2. adjacent stones are the same.
-2. **Count rows containing all colors** – Determines how many full groups of stones contain all three colors (`R`, `G`, `B`).
+# **📜 Stone Sorter: Optimize Stone Row**
+A JavaScript web application that allows users to process a row of stones (`R`, `G`, `B`) using different algorithms.  
+Now includes **smooth removal animations** for a better user experience! 🎬
 
 ---
 
@@ -15,55 +9,64 @@ A JavaScript web application that processes a row of stones (`R`, `G`, `B`) usin
 stone-sorter/
 │── index.html       # Main HTML file
 │── styles/
-│   ├── styles.css   # Main CSS file (BEM methodology)
+│   ├── styles.css   # Main CSS file (BEM methodology, animations added)
 │── scripts/
 │   ├── main.js      # Entry point script
 │   ├── app/
-│   │   ├── StoneProcessor.js  # Logic for processing stones
-│   │   ├── Renderer.js        # Handles UI rendering
 │   │   ├── UIHandler.js       # Manages user interactions
+│   │   ├── StoneProcessor.js  # Logic for processing stones
+│   │   ├── Renderer.js        # Handles UI rendering & animations
 │── README.md       # Documentation
 ```
 
 ---
 
 ## **🚀 Features**
-✅ **Two algorithms for processing stones**  
-✅ **Interactive UI with visualization**  
-✅ **Clean architecture using OOP principles**  
-✅ **CSS structured with BEM methodology**  
-✅ **Modular JavaScript for better maintainability**
+✅ **Three processing algorithms:**
+1. **Remove Adjacent Identical Stones** – Ensures no two adjacent stones are the same.
+2. **Count Rows with All Colors** – Groups stones into rows that contain `R, G, B`.
+3. **Remove Extra Colors** – Ensures each row contains a proper sequence of `RGB`, removing excess occurrences.
+
+✅ **New Smooth Removal Animations!**  
+✅ **Dropdown with Predefined Examples** – Makes testing easier.  
+✅ **Improved Input Validation** – Ensures only `R, G, B` are used.  
+✅ **Modular JavaScript Code** – Easy to expand and modify.
 
 ---
 
 ## **📜 How It Works**
-1. Enter a sequence of stones (`R`, `G`, `B`) in the input field.
-2. Select the algorithm:
-    - **Remove adjacent identical stones** – Determines how many stones need to be removed.
-    - **Count rows with all colors** – Counts how many groups contain all three colors.
-3. Click **"Process"** to see the results and a visualization of the stones.
+1️⃣ **Enter a sequence of stones** (`RRGGBB`, `RGBRGB`, etc.).  
+2️⃣ **Select an algorithm**:
+- **Remove Adjacent Identical Stones**
+- **Count Rows with All Colors**
+- **Remove Extra Colors**  
+  3️⃣ **Click "Process"** to see the results.  
+  4️⃣ **Visual Output:** Stones are displayed, and removed stones smoothly fade out!
 
 ---
 
 ## **📊 Example Test Cases**
-The **Remove Adjacent Identical Stones** algorithm will return the number of stones that must be removed to ensure that no two adjacent stones are the same.
+| **Input**        | **Algorithm**                     | **Output**              | **Animation**  |
+|-----------------|---------------------------------|------------------------|--------------|
+| `"RRGB"`        | Remove Adjacent Stones         | `"RGB"`                 | Shrinks & fades |
+| `"RRGGB"`       | Remove Adjacent Stones         | `"RGB"`                 | Shrinks & fades |
+| `"RRRRGB"`      | Remove Adjacent Stones         | `"RGB"`                 | Shrinks & fades |
+| `"RGBRGBRGGB"`  | Remove Extra Colors            | `"RGBRGBRGB"`           | Shrinks & fades |
+| `"RGGRGBBRGRR"` | Remove Extra Colors            | `"RGRGBRGR"`            | Shrinks & fades |
+| `"RRRRGGGGBBBB"`| Remove Extra Colors            | `"RGB"`                 | Shrinks & fades |
+| `"RGBRGBRGB"`   | Count Rows with All Colors     | `3 Rows`                | No removal |
 
-| **Input**       | **Output (Removed Stones)** | **Final Result**  |
-|---------------|-----------------|----------------|
-| `"RRGB"`      | `1`             | `"RGB"`       |
-| `"RRGGB"`     | `2`             | `"RGB"`       |
-| `"RRRRGB"`    | `3`             | `"RGB"`       |
-| `"RGBRGBRGGB"`| `1`             | `"RGBRGBRGB"` |
-| `"RGGRGBBRGRR"` | `3`           | `"RGRGBRGR"`  |
-| `"RRRRGGGGBBBB"` | `6`         | `"RGB"`       |
+---
 
-The **Count Rows with All Colors** algorithm will return how many full rows contain all three colors (`R`, `G`, `B`).
+## **🎬 New Animation Effect**
+- Stones that need to be removed **shrink & fade out** smoothly.
+- After **0.5s**, the cleaned-up row appears correctly.
+- **Improves User Experience** and makes the process **more engaging**!
 
-For example:
-
-| **Input**       | **Output (Rows with all colors)** | **Visualization**  |
-|---------------|-----------------|----------------|
-| `"RGBRGBRRGGGB"` | `3`           | 🔴🟢🔵<br>🔴🟢🔵<br>🔴🔴🟢<br>🟢🟢🔵 |
+**Example:**  
+✅ Input: `"RRRRGB"`  
+✅ Output: `"RGB"`  
+✅ Effect: The **extra "R" stones shrink & fade**!
 
 ---
 
@@ -71,14 +74,11 @@ For example:
 ### **User Interface**
 ![Stone Sorter UI](https://via.placeholder.com/600x400?text=Stone+Sorter+UI)
 
-### **Example Output**
-#### **Input:** `RRGGBB`
-- **Removed Stones:** `3`
-- **Rows with all colors:** `2`
-- **Visualization:**
-  ```
-  🔴🔴🟢🟢🔵🔵
-  ```
+### **Example Output (Animated)**
+#### **Before Processing**
+🟥🟥🟩🟩🟦🟦
+#### **After Processing (Animation Applied)**
+🟥🟩🟦 (*🟥 fades out smoothly!*)
 
 ---
 
@@ -100,17 +100,18 @@ You can run this project using **Live Server** in VS Code:
 
 ## **🔨 Technologies Used**
 - **HTML5**
-- **CSS3 (BEM Methodology)**
+- **CSS3 (BEM Methodology, Animations)**
 - **JavaScript (ES6+)**
 - **Modular JS with Import/Export**
 - **OOP Principles**
+- **Smooth CSS Transitions**
 
 ---
 
 ## **📌 Future Enhancements**
-🚀 Add animation effects when stones are removed.  
-🔄 Implement a backend for storing user inputs and results.  
-📊 Add statistics about stone arrangements.
+🚀 **More animations!** Make stone removals **bouncy** instead of shrinking.  
+🔄 **Undo button!** Restore the last removed sequence.  
+📊 **Statistics Mode!** Show how many of each stone type appear in input.
 
 ---
 
@@ -126,3 +127,7 @@ This project is licensed under the **MIT License**.
 
 ---
 
+### **✨ What’s New in This Version?**
+✅ **Added animated stone removal**.  
+✅ **Dropdown with predefined test cases**.  
+✅ **Better UI feedback & validation**.

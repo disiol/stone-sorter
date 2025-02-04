@@ -17,12 +17,18 @@ export class UIHandler {
 
     algorithms[selectedAlgorithm]?.(input);
   }
+  
+  static UPDATE_DELAY = Renderer.ANIMATION_DURATION; // Використовуємо ту ж тривалість, що і анімація
 
   static processRemoval(input) {
-    const removeCount = StoneProcessor.minStonesToRemove(input);
+    const { cleanedStones, removedIndices } = StoneProcessor.getRemovals(input);
 
-    Renderer.renderStones(input, false);
-    Renderer.showResult(`✅ Removed Stones: ${removeCount}`);
+    Renderer.renderStones(input, false, removedIndices);
+
+    setTimeout(() => {
+      Renderer.renderStones(cleanedStones, false);
+      Renderer.showResult(`✅ Видалено каменів: ${removedIndices.length}`);
+    }, UIHandler.UPDATE_DELAY);
   }
 
   static processRowCount(input) {
