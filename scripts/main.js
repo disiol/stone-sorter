@@ -3,7 +3,7 @@ import { UIHandler } from './app/UIHandler.js';
 document.addEventListener('DOMContentLoaded', () => {
   const processButton = document.getElementById('processButton');
   const inputStones = document.getElementById('inputStones');
-  const examplesDropdown = document.getElementById('examplesDropdown');
+  const examplesDropdown = document.getElementById('exampleSelector');
 
   if (processButton) {
     processButton.addEventListener('click', UIHandler.handleProcessClick);

@@ -15,19 +15,19 @@
         <h2 class="input-section__title">Enter Stone Row (R, G, B):</h2>
         <input type="text" id="inputStones" class="input-section__field" placeholder="Example: RRGGBB">
     </div>
-    <div class="example-selection">
-        <h3 class="example-selection__title">Choose Example:</h3>
-        <select id="examplesDropdown" class="example-selection__dropdown">
-            <option value="">-- Select an example --</option>
-            <option value="RRGB">RRGB</option>
-            <option value="RRGGB">RRGGB</option>
-            <option value="RRRRGB">RRRRGB</option>
-            <option value="RGBRGBRGGB">RGBRGBRGGB</option>
-            <option value="RGGRGBBRGRR">RGGRGBBRGRR</option>
-            <option value="RRRRGGGGBBBB">RRRRGGGGBBBB</option>
+
+    <div class="examples-section">
+        <h3 class="examples-section__title">Choose an Example:</h3>
+        <select id="exampleSelector" class="examples-section__dropdown">
+            <option value="">-- Select an Example --</option>
+            <option value="RRGB">RRGB (1 removal, becomes RGB)</option>
+            <option value="RRGGB">RRGGB (2 removals, becomes RGB)</option>
+            <option value="RRRRGB">RRRRGB (3 removals, becomes RGB)</option>
+            <option value="RGBRGBRGGB">RGBRGBRGGB (1 removal, becomes RGBRGBRGB)</option>
+            <option value="RGGRGBBRGRR">RGGRGBBRGRR (3 removals, becomes RGRGBRGR)</option>
+            <option value="RRRRGGGGBBBB">RRRRGGGGBBBB (6 removals, becomes RGB)</option>
         </select>
     </div>
-
     <div class="algorithm-selection">
         <h3 class="algorithm-selection__title">Select Algorithm:</h3>
         <label class="algorithm-selection__option">

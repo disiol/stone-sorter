@@ -7,7 +7,13 @@ export class UIHandler {
     const selectedAlgorithm = document.querySelector('input[name="algorithm"]:checked').value;
 
     if (!input) {
-      Renderer.showResult('Please enter a valid stone sequence.');
+      Renderer.showResult('⚠️ Please enter a valid stone sequence.');
+
+      return;
+    }
+
+    if (!/^[RGB]+$/.test(input)) {
+      Renderer.showResult('❌ Invalid input! Use only R, G, B.');
 
       return;
     }
@@ -23,13 +29,13 @@ export class UIHandler {
     const removeCount = StoneProcessor.minStonesToRemove(input);
 
     Renderer.renderStones(input, false);
-    Renderer.showResult(`Removed Stones: ${removeCount}`);
+    Renderer.showResult(`✅ Removed Stones: ${removeCount}`);
   }
 
   static processRowCount(input) {
     const fullRows = StoneProcessor.countColorRows(input);
 
     Renderer.renderStones(input, true);
-    Renderer.showResult(`Rows with all colors: ${fullRows}`);
+    Renderer.showResult(`📊 Rows with all colors: ${fullRows}`);
   }
 }
