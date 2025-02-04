@@ -84,15 +84,25 @@ body {
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.stone--R { background-color: red; }
-.stone--G { background-color: green; }
-.stone--B { background-color: blue; }
+.stone--R {
+    background-color: red;
+}
+
+.stone--G {
+    background-color: green;
+}
+
+.stone--B {
+    background-color: blue;
+}
 
 /* Animations for removed stones */
 
-.stone--removedOpacity03 { opacity: 0.3; }
+.stone--animRemoveExtraColors  {
+    opacity: 0.3;
+}
 
-.stone--removedScale0Opacity0 {
+.stone--animRemovedStones {
     transform: scale(0);
     opacity: 0;
 }

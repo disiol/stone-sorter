@@ -1,20 +1,5 @@
 export class StoneProcessor {
   /**
-   * Підраховує мінімальну кількість видалених каменів, щоб уникнути однакових поруч.
-   * @param {string} stones
-   * @returns {number}
-   */
-  static minStonesToRemove(stones) {
-    let count = 0;
-
-    for (let i = 1; i < stones.length; i++) {
-      if (stones[i] === stones[i - 1]) count++;
-    }
-
-    return count;
-  }
-
-  /**
    * Підраховує кількість повних рядків (R, G, B)
    * @param {string} stones
    * @returns {number}

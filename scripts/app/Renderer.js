@@ -1,6 +1,14 @@
+function animRemovedStones(removedIndices, i, stoneElement) {
+  if (removedIndices.includes(i)) {
+    setTimeout(() => {
+      stoneElement.classList.add('stone--animRemovedStones');
+    }, Renderer.ANIMATION_DELAY);
+  }
+}
+
 export class Renderer {
-  static ANIMATION_DELAY = 200; // Час перед початком анімації
-  static ANIMATION_DURATION = 500; // Загальна тривалість ефекту
+  static ANIMATION_DELAY = 500; // Час перед початком анімації
+  static ANIMATION_DURATION = 900; // Загальна тривалість ефекту
   static clearContainer() {
     document.getElementById('stoneVisualization').innerHTML = '';
   }
@@ -21,11 +29,7 @@ export class Renderer {
       stoneElement.innerText = stones[i];
 
       // Анімація видалення каменів із використанням константи
-      if (removedIndices.includes(i)) {
-        setTimeout(() => {
-          stoneElement.classList.add('removed');
-        }, Renderer.ANIMATION_DELAY);
-      }
+      animRemovedStones(removedIndices, i, stoneElement);
 
       rowContainer.appendChild(stoneElement);
 
