@@ -6,23 +6,16 @@ export class UIHandler {
     const input = document.getElementById('inputStones').value.toUpperCase().trim();
     const selectedAlgorithm = document.querySelector('input[name="algorithm"]:checked').value;
 
-    if (!input) {
-      Renderer.showResult('⚠️ Please enter a valid stone sequence.');
+    if (!input) return Renderer.showResult('⚠️ Please enter a valid stone sequence.');
+    if (!/^[RGB]+$/.test(input)) return Renderer.showResult('❌ Invalid input! Use only R, G, B.');
 
-      return;
-    }
+    const algorithms = {
+      remove: UIHandler.processRemoval,
+      rows: UIHandler.processRowCount,
+      clean: UIHandler.processCleanup
+    };
 
-    if (!/^[RGB]+$/.test(input)) {
-      Renderer.showResult('❌ Invalid input! Use only R, G, B.');
-
-      return;
-    }
-
-    if (selectedAlgorithm === 'remove') {
-      UIHandler.processRemoval(input);
-    } else if (selectedAlgorithm === 'rows') {
-      UIHandler.processRowCount(input);
-    }
+    algorithms[selectedAlgorithm]?.(input);
   }
 
   static processRemoval(input) {
@@ -37,5 +30,12 @@ export class UIHandler {
 
     Renderer.renderStones(input, true);
     Renderer.showResult(`📊 Rows with all colors: ${fullRows}`);
+  }
+
+  static processCleanup(input) {
+    const cleanedInput = StoneProcessor.removeExtraColors(input);
+
+    Renderer.renderStones(cleanedInput, false);
+    Renderer.showResult(`🎯 Cleaned Sequence: ${cleanedInput}`);
   }
 }
