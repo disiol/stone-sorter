@@ -30,11 +30,11 @@ export class UIHandler {
       Renderer.showResult(`✅ Видалено каменів: ${removedIndices.length}`);
     }, UIHandler.UPDATE_DELAY);
   }
-
   static processRowCount(input) {
-    const fullRows = StoneProcessor.countColorRows(input);
+    const cleanedInput = StoneProcessor.removeExtraColors(input);
+    const fullRows = StoneProcessor.countColorRows(cleanedInput);
 
-    Renderer.renderStones(input, true);
+    Renderer.renderStones(cleanedInput, true);
     Renderer.showResult(`📊 Rows with all colors: ${fullRows}`);
   }
 
